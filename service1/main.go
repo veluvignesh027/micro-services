@@ -14,5 +14,9 @@ func main() {
 		log.Println("Received request:", r)
 		fmt.Fprint(w, "This response is from service 1")
 	}).Methods(http.MethodGet)
-	http.ListenAndServe(":3000", r)
+	log.Println("Server Listening at port 3001")
+
+	if err := http.ListenAndServe(":3001", r); err != nil {
+		log.Println(err)
+	}
 }
