@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>Service</title>
+    <style>
+        * {
+            font-family: 'monospace';
+            font-size: x-large;
+        }
+
+        .main {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .box {
+            height: 80%;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .text {
+            height: 50%;
+            width: 50%;
+        }
+    </style>
+
+    <script>
+        const getData = () => {
+            const box = document.getElementById("textbox")
+            console.log(box.value)
+
+            fetch('http://localhost:3000/submit', {
+                method: 'POST',
+                body: JSON.stringify(
+                    box.value,
+                ),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            }).then((res) => {
+                return res.json()
+            }).then(data => {
+                const fill = document.getElementById('fill')
+                fill.innerText = data.response
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="box">
+            <textarea name="payload" class="text" id="textbox"></textarea>
+            <div class="fill" id="fill" style="width: 20%; height: 10%;"></div>
+        </div>
+        <button type="submit" onclick=getData()>Send Request</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
