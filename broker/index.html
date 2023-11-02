@@ -3,9 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
     <title>Service</title>
     <style>
@@ -40,9 +38,11 @@
 
             fetch('http://localhost:3000/submit', {
                 method: 'POST',
+                mode:'no-cors',
                 body: box.value,
                 headers: {
                     'Content-type': 'application/json',
+                    'Host': 'http://' + window.location.host
                 }
             }).then((res) => {
                 return res.json()

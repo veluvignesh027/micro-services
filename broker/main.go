@@ -40,6 +40,8 @@ func main() {
 func SubmitHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Received request:", r)
 	w.Header().Set("Content-type", "application/json; charset=UTF-8")
+	w.Header().Add("Access-Control-Allow-Origin", "*")
+	w.Header().Add("Access-Control-Allow-Credentials", "true")
 
 	var temp RequestFmt
 	nByte, err := io.ReadAll(r.Body)
