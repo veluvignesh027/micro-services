@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: micro-service
+  template:
+    metadata:
+      labels:
+        app: micro-service
+    spec:
+      containers:
+        - name: broker
+          image: mrlucky0501/micro-services:broker
+          ports:
+            - containerPort: 3000
+        - name: service1
+          image: mrlucky0501/micro-services:service1
+          ports:
+            - containerPort: 3001
+        - name: service2
+          image: mrlucky0501/micro-services:service2
+          ports:
+            - containerPort: 3002
+        - name: service3
+          image: mrlucky0501/micro-services:service3
+          ports:
+          - containerPort: 3003

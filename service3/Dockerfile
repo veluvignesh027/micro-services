@@ -6,4 +6,6 @@ COPY . .
 
 RUN go build -o service3 .
 
+EXPOSE 3003
+
 CMD [ "./service3" ]
